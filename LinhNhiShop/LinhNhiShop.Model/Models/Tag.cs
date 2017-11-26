@@ -9,7 +9,8 @@ namespace LinhNhiShop.Model.Models
     {
         [Key]
         [MaxLength(50)]
-        public int ID { get; set; }
+        [Column(TypeName = "varchar")]
+        public string ID { get; set; }
 
         [MaxLength(50)]
         [Required]

@@ -15,6 +15,7 @@ namespace LinhNhiShop.Data.Infrastructure
         {
             Dispose(true);
             GC.SuppressFinalize(this);
+            //Garbage collection
         }
         private void Dispose(bool disposing)
         {
