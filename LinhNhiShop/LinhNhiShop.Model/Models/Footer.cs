@@ -8,7 +8,7 @@ namespace LinhNhiShop.Model.Models
     {
         [Key]
         [MaxLength(50)]
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         [Required]
         public string Content { get; set; }
