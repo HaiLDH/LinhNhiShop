@@ -6,7 +6,7 @@ using System.Linq;
 namespace LinhNhiShop.Data.Repositories
 {
     //add new method no in RepositoryBase
-    public interface IProductCategoryRepository
+    public interface IProductCategoryRepository : IRepository<ProductCategory>
     {
         IEnumerable<ProductCategory> GetByAlias(string alias);
     }

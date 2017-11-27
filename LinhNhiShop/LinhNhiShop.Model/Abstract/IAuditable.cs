@@ -11,5 +11,7 @@ namespace LinhNhiShop.Model.Abstract
 
         string MetaKeyword { get; set; }
         string MetaDescription { get; set; }
+
+        bool Status { set; get; }
     }
 }

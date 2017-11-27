@@ -3,7 +3,7 @@ using LinhNhiShop.Model.Models;
 
 namespace LinhNhiShop.Data.Repositories
 {
-    public interface ISystemConfigRepository
+    public interface ISystemConfigRepository : IRepository<SystemConfig>
     {
 
     }

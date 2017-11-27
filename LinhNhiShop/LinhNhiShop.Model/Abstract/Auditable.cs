@@ -16,5 +16,7 @@ namespace LinhNhiShop.Model.Abstract
         public string MetaKeyword { get; set; }
         [MaxLength(256)]
         public string MetaDescription { get; set; }
+
+        public bool Status { set; get; }
     }
 }
