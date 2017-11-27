@@ -7,10 +7,10 @@ namespace LinhNhiShop.Service
 {
     public interface IPostCategoryService
     {
-        void Add(PostCategory postCategory);
+        PostCategory Add(PostCategory postCategory);
         void Update(PostCategory postCategory);
-        void Delete(PostCategory postCategory);
-        void Delete(int id);
+        PostCategory Delete(PostCategory postCategory);
+        PostCategory Delete(int id);
 
         IEnumerable<PostCategory> GetAll();
         IEnumerable<PostCategory> GetAllByParentId(int parentID);
@@ -29,19 +29,19 @@ namespace LinhNhiShop.Service
         }
 
 
-        public void Add(PostCategory postCategory)
+        public PostCategory Add(PostCategory postCategory)
         {
-            _postCategoryRepository.Add(postCategory);
+            return _postCategoryRepository.Add(postCategory);
         }
 
-        public void Delete(PostCategory postCategory)
+        public PostCategory Delete(PostCategory postCategory)
         {
-            _postCategoryRepository.Delete(postCategory);
+            return _postCategoryRepository.Delete(postCategory);
         }
 
-        public void Delete(int id)
+        public PostCategory Delete(int id)
         {
-            _postCategoryRepository.Delete(id);
+            return _postCategoryRepository.Delete(id);
         }
 
         public IEnumerable<PostCategory> GetAll()
