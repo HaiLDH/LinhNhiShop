@@ -10,7 +10,7 @@ namespace LinhNhiShop.Data.Repositories
 
     public class PostTagRepository : RepositoryBase<PostTag>, IPostTagRepository
     {
-        public PostTagRepository(DbFactory dbFactory) : base(dbFactory)
+        public PostTagRepository(IDbFactory dbFactory) : base(dbFactory)
         {
 
         }

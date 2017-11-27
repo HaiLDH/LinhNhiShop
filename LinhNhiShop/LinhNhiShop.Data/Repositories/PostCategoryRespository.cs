@@ -9,7 +9,7 @@ namespace LinhNhiShop.Data.Repositories
     }
     public class PostCategoryRespository : RepositoryBase<PostCategory>, IPostCategoryRespository
     {
-        public PostCategoryRespository(DbFactory dbFactory) : base(dbFactory)
+        public PostCategoryRespository(IDbFactory dbFactory) : base(dbFactory)
         {
 
         }
