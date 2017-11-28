@@ -37,6 +37,8 @@ namespace LinhNhiShop.Data
 
         public DbSet<VisitorStatistic> VisitorStatistics { get; set; }
 
+        public DbSet<Error> Errors { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
 
