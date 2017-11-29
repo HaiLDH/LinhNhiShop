@@ -1,9 +1,13 @@
-﻿using LinhNhiShop.Model.Models;
+﻿using AutoMapper;
+using LinhNhiShop.Model.Models;
 using LinhNhiShop.Service;
 using LinhNhiShop.Web.Infrastructue.Core;
+using LinhNhiShop.Web.Models;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LinhNhiShop.Web.Infrastructue.Extentions;
 
 namespace LinhNhiShop.Web.Api
 {
@@ -18,7 +22,8 @@ namespace LinhNhiShop.Web.Api
             this._postCategoryService = postCategoryService;
         }
 
-        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
@@ -30,6 +35,9 @@ namespace LinhNhiShop.Web.Api
                 }
                 else
                 {
+                    PostCategory postCategory = new PostCategory();
+                    postCategory.UpdatePostCategory(postCategoryVm);
+
                     var category = _postCategoryService.Add(postCategory);
                     _postCategoryService.Save();
 
@@ -60,7 +68,8 @@ namespace LinhNhiShop.Web.Api
             });
         }
 
-        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVM)
         {
             return CreateHttpResponse(requestMessage, () =>
             {
@@ -72,6 +81,10 @@ namespace LinhNhiShop.Web.Api
                 }
                 else
                 {
+                    var postCategory = new PostCategory();
+                    _postCategoryService.GetById(postCategoryVM.ID);
+                    postCategory.UpdatePostCategory(postCategoryVM);
+
                     _postCategoryService.Update(postCategory);
                     _postCategoryService.Save();
 
@@ -108,7 +121,10 @@ namespace LinhNhiShop.Web.Api
             return CreateHttpResponse(requestMessage, () =>
             {
                 var listCategory = _postCategoryService.GetAll();
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listCategory);
+
+                var listPostCategoryVm = Mapper.Map<List<PostCategoryViewModel>>(listCategory);
+
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
                 return responseMessage;
             });
