@@ -15,13 +15,13 @@ namespace LinhNhiShop.UnitTest.RepositoryTest
     {
         IDbFactory _dbFactory;
         IUnitOfWork _unitOfWork;
-        IPostCategoryRespository _objRepository;
+        IPostCategoryRepository _objRepository;
 
         [TestInitialize]
         public void Initialize()
         {
             _dbFactory = new DbFactory();
-            _objRepository = new PostCategoryRespository(_dbFactory);
+            _objRepository = new PostCategoryRepository(_dbFactory);
             _unitOfWork = new UnitOfWork(_dbFactory);
         }
 
