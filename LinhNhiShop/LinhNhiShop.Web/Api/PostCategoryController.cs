@@ -107,18 +107,9 @@ namespace LinhNhiShop.Web.Api
         {
             return CreateHttpResponse(requestMessage, () =>
             {
-                HttpResponseMessage responseMessage = null;
+                var listCategory = _postCategoryService.GetAll();
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listCategory);
 
-                if (ModelState.IsValid)
-                {
-                    responseMessage = requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listCategory = _postCategoryService.GetAll();
-
-                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listCategory);
-                }
                 return responseMessage;
             });
         }

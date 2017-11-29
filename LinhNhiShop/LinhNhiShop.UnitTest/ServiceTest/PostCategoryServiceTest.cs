@@ -15,7 +15,7 @@ namespace LinhNhiShop.UnitTest.ServiceTest
     [TestClass]
     public class PostCategoryServiceTest
     {
-        private Mock<IPostCategoryRespository> _mockPostCategoryRepository;
+        private Mock<IPostCategoryRepository> _mockPostCategoryRepository;
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private IPostCategoryService _postCategoryService;
         private List<PostCategory> _listPostCategory;
@@ -23,7 +23,7 @@ namespace LinhNhiShop.UnitTest.ServiceTest
         [TestInitialize]
         public void Initialeze()
         {
-            _mockPostCategoryRepository = new Mock<IPostCategoryRespository>();
+            _mockPostCategoryRepository = new Mock<IPostCategoryRepository>();
             _mockUnitOfWork = new Mock<IUnitOfWork>();
             _postCategoryService = new PostCategoryService(_mockPostCategoryRepository.Object, _mockUnitOfWork.Object);
             _listPostCategory = new List<PostCategory>()

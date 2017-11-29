@@ -22,9 +22,9 @@ namespace LinhNhiShop.Service
 
     public class PostCategoryService : IPostCategoryService
     {
-        IPostCategoryRespository _postCategoryRepository;
+        IPostCategoryRepository _postCategoryRepository;
         IUnitOfWork _unitOfWork;
-        public PostCategoryService(IPostCategoryRespository postCategoryRepository, IUnitOfWork unitOfWork)
+        public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
         {
             this._postCategoryRepository = postCategoryRepository;
             this._unitOfWork = unitOfWork;
