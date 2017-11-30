@@ -1,9 +1,10 @@
 ﻿using LinhNhiShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
 namespace LinhNhiShop.Data
 {
-    public class LinhNhiShopDbContext : DbContext
+    public class LinhNhiShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public LinhNhiShopDbContext() : base("LinhNhiShopConnection")
         {
@@ -39,9 +40,17 @@ namespace LinhNhiShop.Data
 
         public DbSet<Error> Errors { get; set; }
 
+        public static LinhNhiShopDbContext Create()
+        {
+            return new LinhNhiShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+            //2 primary key
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            //1 primary key
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }

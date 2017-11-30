@@ -4,10 +4,14 @@ using Autofac.Integration.WebApi;
 using LinhNhiShop.Data;
 using LinhNhiShop.Data.Infrastructure;
 using LinhNhiShop.Data.Repositories;
+using LinhNhiShop.Model.Models;
 using LinhNhiShop.Service;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
 using Owin;
 using System.Reflection;
+using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 
@@ -20,6 +24,7 @@ namespace LinhNhiShop.Web.App_Start
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
+            ConfigureAuth(app);
         }
 
         private void ConfigAutofac(IAppBuilder app)
@@ -34,7 +39,12 @@ namespace LinhNhiShop.Web.App_Start
 
             builder.RegisterType<LinhNhiShopDbContext>().AsSelf().InstancePerRequest();
 
-
+            //ASP.NET Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
             //Repository
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
