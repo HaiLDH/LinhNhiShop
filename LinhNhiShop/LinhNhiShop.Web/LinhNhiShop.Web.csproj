@@ -212,6 +212,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructue\Core\ApiBaseController.cs" />
+    <Compile Include="Infrastructue\Core\PaginationSet.cs" />
     <Compile Include="Infrastructue\Extentions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\OrderDetailViewModel.cs" />

@@ -24,13 +24,28 @@ namespace LinhNhiShop.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage)
+        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage, int page, int pageSize)
         {
             return CreateHttpResponse(httpRequestMessage, () =>
             {
+                int totalRow = 0;
                 var model = _productCategoryService.GetAll();
-                var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
-                var respon = httpRequestMessage.CreateResponse(HttpStatusCode.OK, responData);
+
+                totalRow = model.Count();
+                var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
+
+                var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
+
+                var paginationSet = new PaginationSet<ProductCategoryViewModel>()
+                {
+                    Items = responData,
+                    Page = page,
+                    TotalCount = totalRow,
+                    TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
+                };
+
+
+                var respon = httpRequestMessage.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return respon;
             });
         }
