@@ -1,5 +1,9 @@
 ﻿(function () {
-    angular.module('linhnhishop', ['linhnhishop.products','linhnhishop.common']).config(config);
+    angular.module('linhnhishop',
+        ['linhnhishop.products',
+            'linhnhishop.product_categories',
+            'linhnhishop.common'])
+        .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
