@@ -24,12 +24,12 @@ namespace LinhNhiShop.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage, int page, int pageSize)
+        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage,string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(httpRequestMessage, () =>
             {
                 int totalRow = 0;
-                var model = _productCategoryService.GetAll();
+                var model = _productCategoryService.GetAll(keyword);
 
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);

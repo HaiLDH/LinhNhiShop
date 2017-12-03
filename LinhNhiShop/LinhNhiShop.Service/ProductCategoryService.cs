@@ -15,6 +15,8 @@ namespace LinhNhiShop.Service
         IEnumerable<ProductCategory> GetAll();
         IEnumerable<ProductCategory> GetAllByParentId(int parentID);
 
+        IEnumerable<ProductCategory> GetAll(string keyword);
+
         ProductCategory GetById(int id);
 
         void Save();
@@ -49,6 +51,14 @@ namespace LinhNhiShop.Service
         public IEnumerable<ProductCategory> GetAll()
         {
             return _ProductCategoryRepository.GetAll();
+        }
+
+        public IEnumerable<ProductCategory> GetAll(string keyword)
+        {
+            if (!string.IsNullOrEmpty(keyword))
+                return _ProductCategoryRepository.GetMulti(x => x.Name.Contains(keyword) || x.Description.Contains(keyword));
+            else
+                return _ProductCategoryRepository.GetAll();
         }
 
         public IEnumerable<ProductCategory> GetAllByParentId(int parentID)

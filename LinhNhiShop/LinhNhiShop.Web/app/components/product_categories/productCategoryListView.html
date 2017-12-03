@@ -1,8 +1,8 @@
 ﻿            <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Home page
-        <small>This is home page of SPA</small>
+        Product page
+        <small>Danh mục sản phẩm</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Trang chủ</a></li>
@@ -27,6 +27,16 @@
             </div>
         </div>
         <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input ng-model="keyword" type="text" class="form-control" placeholder="Search for...">
+                        <span class="input-group-btn">
+                            <button ng-click="search()" class="btn btn-secondary" type="button">Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-bordered">
@@ -54,6 +64,11 @@
                                 <button class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></button>
                             </td>
                         </tr>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">Tổng số danh mục sản phẩm tìm kiếm được: {{totalCount}}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
