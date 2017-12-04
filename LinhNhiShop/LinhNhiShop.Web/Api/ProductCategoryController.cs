@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using LinhNhiShop.Web.Infrastructue.Extentions;
 
 namespace LinhNhiShop.Web.Api
 {
@@ -24,7 +25,8 @@ namespace LinhNhiShop.Web.Api
         }
 
         [Route("getall")]
-        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage,string keyword, int page, int pageSize)
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage, string keyword, int page, int pageSize)
         {
             return CreateHttpResponse(httpRequestMessage, () =>
             {
@@ -47,6 +49,52 @@ namespace LinhNhiShop.Web.Api
 
                 var respon = httpRequestMessage.CreateResponse(HttpStatusCode.OK, paginationSet);
                 return respon;
+            });
+        }
+
+
+        [Route("getallparent")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage)
+        {
+            return CreateHttpResponse(httpRequestMessage, () =>
+            {
+                var model = _productCategoryService.GetAll();
+
+                var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                var respon = httpRequestMessage.CreateResponse(HttpStatusCode.OK, responData);
+                return respon;
+            });
+        }
+
+
+        [HttpPost]
+        [Route("create")]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage httpRequest, ProductCategoryViewModel productCategoryViewModel)
+        {
+            return CreateHttpResponse(httpRequest, () =>
+            {
+                HttpResponseMessage httpResponse = null;
+
+                if (!ModelState.IsValid)
+                {
+                    httpResponse = httpRequest.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var productCategory = new ProductCategory();
+                    productCategory.UpdateProductCategory(productCategoryViewModel);
+
+                    _productCategoryService.Add(productCategory);
+                    _productCategoryService.Save();
+
+                    var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+                    httpResponse = httpRequest.CreateResponse(HttpStatusCode.Created, responData);
+                }
+
+                return httpResponse;
             });
         }
     }
