@@ -34,7 +34,7 @@ namespace LinhNhiShop.Web.Api
                 var model = _productCategoryService.GetAll(keyword);
 
                 totalRow = model.Count();
-                var query = model.OrderByDescending(x => x.CreateDate).Skip(page * pageSize).Take(pageSize);
+                var query = model.OrderByDescending(x => x.ID).Skip(page * pageSize).Take(pageSize);
 
                 var responData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(query);
 
