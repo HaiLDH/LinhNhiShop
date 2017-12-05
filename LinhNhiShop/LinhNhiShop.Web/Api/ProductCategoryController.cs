@@ -52,6 +52,21 @@ namespace LinhNhiShop.Web.Api
             });
         }
 
+        [Route("getbyid/{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage httpRequestMessage, int id)
+        {
+            return CreateHttpResponse(httpRequestMessage, () =>
+            {
+                var model = _productCategoryService.GetById(id);
+
+                var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(model);
+
+                var respon = httpRequestMessage.CreateResponse(HttpStatusCode.OK, responData);
+                return respon;
+            });
+        }
+
 
         [Route("getallparent")]
         [HttpGet]
@@ -86,8 +101,40 @@ namespace LinhNhiShop.Web.Api
                 {
                     var productCategory = new ProductCategory();
                     productCategory.UpdateProductCategory(productCategoryViewModel);
+                    productCategory.CreateDate = DateTime.Now;
 
                     _productCategoryService.Add(productCategory);
+                    _productCategoryService.Save();
+
+                    var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
+                    httpResponse = httpRequest.CreateResponse(HttpStatusCode.Created, responData);
+                }
+
+                return httpResponse;
+            });
+        }
+
+
+        [HttpPut]
+        [Route("update")]
+        [AllowAnonymous]
+        public HttpResponseMessage Update(HttpRequestMessage httpRequest, ProductCategoryViewModel productCategoryViewModel)
+        {
+            return CreateHttpResponse(httpRequest, () =>
+            {
+                HttpResponseMessage httpResponse = null;
+
+                if (!ModelState.IsValid)
+                {
+                    httpResponse = httpRequest.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var productCategory = _productCategoryService.GetById(productCategoryViewModel.ID);
+                    productCategory.UpdateProductCategory(productCategoryViewModel);
+                    productCategory.UpdateDate = DateTime.Now;
+
+                    _productCategoryService.Update(productCategory);
                     _productCategoryService.Save();
 
                     var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(productCategory);
