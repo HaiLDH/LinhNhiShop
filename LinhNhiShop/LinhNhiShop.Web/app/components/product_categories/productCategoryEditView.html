@@ -24,19 +24,22 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tên danh mục</label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" class="form-control" ng-change="GetSeoTitle()" ng-model="productCategory.Name" >
+                        <input type="text" name="name" class="form-control" ng-maxlength="256" required ng-change="GetSeoTitle()" ng-model="productCategory.Name">
+                        <span ng-show="frmUpdateProductCatefory.name.$invalid || frmUpdateProductCatefory.name.$error.maxlength" class="has-error">Tên danh mục sản phẩm lớn hơn 0 và ít hơn 256 kí tự</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
                     <div class="col-sm-10">
-                        <input type="text" name="alias" class="form-control" ng-model="productCategory.Alias">
+                        <input type="text" name="alias" required class="form-control" ng-maxlength="256" ng-model="productCategory.Alias">
+                        <span ng-show="frmUpdateProductCatefory.alias.$invalid|| frmUpdateProductCatefory.alias.$error.maxlength" class="has-error">Yêu cầu nhập tiêu đề SEO</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
-                        <input type="text" name="description" class="form-control" ng-model="productCategory.Description">
+                        <input type="text" name="description" class="form-control" ng-maxlength="500" ng-model="productCategory.Description">
+                        <span ng-show="frmUpdateProductCatefory.description.$error.maxlength" class="has-error">Mô tả tối đa 500 kí tự</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -51,7 +54,8 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự hiển thị</label>
                     <div class="col-sm-10">
-                        <input type="number" name="displayOrder" class="form-control" ng-model="productCategory.DisplayOrder">
+                        <input type="number" name="displayOrder" required class="form-control" ng-model="productCategory.DisplayOrder">
+                        <span ng-show="frmUpdateProductCatefory.displayOrder.$invalid" class="has-error">Yêu cầu nhập thứ tự hiển thị</span>
                     </div>
                 </div>
                 <div class="form-group">
@@ -92,7 +96,7 @@
             <!-- /.box-body -->
             <div class="box-footer">
                 <button ui-sref="product_categories" type="submit" class="btn btn-default">Hủy</button>
-                <button type="submit" class="btn btn-success pull-right">Lưu</button>
+                <button type="submit" class="btn btn-success pull-right" ng-disabled="frmUpdateProductCatefory.$invalid">Lưu</button>
             </div>
             <!-- /.box-footer -->
         </form>
