@@ -7,7 +7,8 @@
         return {
             get: get,
             post: post,
-            put: put
+            put: put,
+            del: del
         }
 
         function post(url, data, success, failure) {
@@ -38,6 +39,17 @@
             }), function (error) {
                 failure(error);
             }
+        }
+
+        function del(url, data, success, failure) {
+            $http.delete(url, data).then(function (result) {
+                success(result);
+            }, function (error) {
+                if (error.status === 401)
+                    notificationService.displayError('Yêu cầu đăng nhập');
+                else if (error != null)
+                    failure(error);
+            });
         }
     }
 })(angular.module('linhnhishop.common'));

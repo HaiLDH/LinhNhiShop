@@ -144,5 +144,32 @@ namespace LinhNhiShop.Web.Api
                 return httpResponse;
             });
         }
+
+
+        [HttpDelete]
+        [Route("delete")]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage httpRequest, int id)
+        {
+            return CreateHttpResponse(httpRequest, () =>
+            {
+                HttpResponseMessage httpResponse = null;
+
+                if (!ModelState.IsValid)
+                {
+                    httpResponse = httpRequest.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
+                    _productCategoryService.Save();
+
+                    var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
+                    httpResponse = httpRequest.CreateResponse(HttpStatusCode.OK, responData);
+                }
+
+                return httpResponse;
+            });
+        }
     }
 }
