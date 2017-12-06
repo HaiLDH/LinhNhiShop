@@ -10,6 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using LinhNhiShop.Web.Infrastructue.Extentions;
+using System.Web.Script.Serialization;
 
 namespace LinhNhiShop.Web.Api
 {
@@ -166,6 +167,35 @@ namespace LinhNhiShop.Web.Api
 
                     var responData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(oldProductCategory);
                     httpResponse = httpRequest.CreateResponse(HttpStatusCode.OK, responData);
+                }
+
+                return httpResponse;
+            });
+        }
+
+        [HttpDelete]
+        [Route("deletemulti")]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage httpRequest, string checkedProductCategories)
+        {
+            return CreateHttpResponse(httpRequest, () =>
+            {
+                HttpResponseMessage httpResponse = null;
+
+                if (!ModelState.IsValid)
+                {
+                    httpResponse = httpRequest.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategoryId = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach(var id in listProductCategoryId)
+                    {
+                        _productCategoryService.Delete(id);
+                    }
+                    _productCategoryService.Save();
+
+                    httpResponse = httpRequest.CreateResponse(HttpStatusCode.OK, listProductCategoryId.Count);
                 }
 
                 return httpResponse;
