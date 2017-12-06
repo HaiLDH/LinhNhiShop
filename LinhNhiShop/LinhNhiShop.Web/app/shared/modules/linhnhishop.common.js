@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('linhnhishop.common', ['ui.router', 'ngBootbox'])
+    angular.module('linhnhishop.common', ['ui.router', 'ngBootbox','ngCkeditor'])
 })();

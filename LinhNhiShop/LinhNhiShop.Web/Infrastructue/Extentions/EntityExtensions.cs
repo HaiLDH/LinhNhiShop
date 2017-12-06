@@ -107,5 +107,49 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
 
             productCategory.Status = productCategoryViewModel.Status;
         }
+
+        public static void UpdateProduct(this Product product, ProductViewModel productViewModel)
+        {
+            product.ID = productViewModel.ID;
+
+            product.Name = productViewModel.Name;
+
+            product.Alias = productViewModel.Alias;
+
+            product.CategoryID = productViewModel.CategoryID;
+
+            product.MoreImages = productViewModel.MoreImages;
+
+            product.Price = productViewModel.Price;
+
+            product.PromotionPrice = productViewModel.PromotionPrice;
+
+            product.Warranty = productViewModel.Warranty;
+
+            product.Description = productViewModel.Description;
+
+            product.Content = productViewModel.Content;
+
+            product.HomeFlag = productViewModel.HomeFlag;
+
+            product.HotFlag = productViewModel.HotFlag;
+
+            product.ViewCount = productViewModel.ViewCount;
+
+
+            product.CreateDate = productViewModel.CreateDate;
+
+            product.CreateBy = productViewModel.CreateBy;
+
+            product.UpdateDate = productViewModel.UpdateDate;
+
+            product.UpdateBy = productViewModel.UpdateBy;
+
+            product.MetaKeyword = productViewModel.MetaKeyword;
+
+            product.MetaDescription = productViewModel.MetaDescription;
+
+            product.Status = productViewModel.Status;
+        }
     }
 }

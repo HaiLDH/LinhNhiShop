@@ -189,7 +189,7 @@ namespace LinhNhiShop.Web.Api
                 else
                 {
                     var listProductCategoryId = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
-                    foreach(var id in listProductCategoryId)
+                    foreach (var id in listProductCategoryId)
                     {
                         _productCategoryService.Delete(id);
                     }
