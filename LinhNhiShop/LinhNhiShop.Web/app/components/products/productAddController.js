@@ -12,6 +12,15 @@
         $scope.AddProduct = AddProduct;
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.getProductCategories = getProductCategories;
+        $scope.ChooseImage = ChooseImage;
+
+        function ChooseImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.product.Image = fileUrl;
+            }
+            finder.popup();
+        }
 
         $scope.ckeditorOptions = {
             language: 'vi',
