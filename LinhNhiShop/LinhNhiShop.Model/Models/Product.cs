@@ -48,11 +48,13 @@ namespace LinhNhiShop.Model.Models
 
         public int? ViewCount { get; set; }
 
+        public string Tags { get; set; }
+
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategories { get; set; }
 
-        public virtual IEnumerable<ProductTag> ProductTags { get; set; }
+        //public virtual IEnumerable<ProductTag> ProductTags { get; set; }
 
-        public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
+        //public virtual IEnumerable<OrderDetail> OrderDetails { get; set; }
     }
 }

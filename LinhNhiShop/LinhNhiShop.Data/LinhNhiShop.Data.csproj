@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201711300755363_ChangeKey.Designer.cs">
       <DependentUpon>201711300755363_ChangeKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712070521550_AddTagField.cs" />
+    <Compile Include="Migrations\201712070521550_AddTagField.Designer.cs">
+      <DependentUpon>201712070521550_AddTagField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -95,6 +99,7 @@
     <Compile Include="Repositories\PostTagRepository.cs" />
     <Compile Include="Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductTagRepository.cs" />
     <Compile Include="Repositories\SlideRepository.cs" />
     <Compile Include="Repositories\SupportOnlineRepository.cs" />
     <Compile Include="Repositories\SystemConfigRepository.cs" />
@@ -130,6 +135,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711300755363_ChangeKey.resx">
       <DependentUpon>201711300755363_ChangeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712070521550_AddTagField.resx">
+      <DependentUpon>201712070521550_AddTagField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

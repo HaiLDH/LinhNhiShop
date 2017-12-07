@@ -150,6 +150,8 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
             product.MetaDescription = productViewModel.MetaDescription;
 
             product.Status = productViewModel.Status;
-        }
+
+            product.Tags = productViewModel.Tags;
+    }
     }
 }

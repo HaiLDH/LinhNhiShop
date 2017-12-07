@@ -176,7 +176,7 @@ namespace LinhNhiShop.Web.Api
         [HttpDelete]
         [Route("deletemulti")]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMulti(HttpRequestMessage httpRequest, string checkedProduct)
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage httpRequest, string checkedProducts)
         {
             return CreateHttpResponse(httpRequest, () =>
             {
@@ -188,7 +188,7 @@ namespace LinhNhiShop.Web.Api
                 }
                 else
                 {
-                    var listProductId = new JavaScriptSerializer().Deserialize<List<int>>(checkedProduct);
+                    var listProductId = new JavaScriptSerializer().Deserialize<List<int>>(checkedProducts);
                     foreach (var id in listProductId)
                     {
                         _productService.Delete(id);
