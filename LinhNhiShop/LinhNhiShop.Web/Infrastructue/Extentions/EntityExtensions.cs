@@ -120,6 +120,8 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
 
             product.MoreImages = productViewModel.MoreImages;
 
+            product.Image = productViewModel.Image;
+
             product.Price = productViewModel.Price;
 
             product.PromotionPrice = productViewModel.PromotionPrice;

@@ -2,10 +2,10 @@
 (function (app) {
     app.controller('productAddController', productAddController);
     productAddController.$inject = ['apiService',
-                                    '$scope',
-                                    'notificationService',
-                                    '$state',
-                                    'commonService'];
+        '$scope',
+        'notificationService',
+        '$state',
+        'commonService'];
 
     function productAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.product = {
@@ -17,11 +17,26 @@
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.getProductCategories = getProductCategories;
         $scope.ChooseImage = ChooseImage;
+        $scope.ChooseMoreImage = ChooseMoreImage;
+
+        $scope.moreImages = [];
 
         function ChooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                });
+            }
+            finder.popup();
+        }
+
+        function ChooseMoreImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                });
             }
             finder.popup();
         }
@@ -46,6 +61,7 @@
 
 
         function AddProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.post('/api/product/create', $scope.product,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' Đã được thêm mới');

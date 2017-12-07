@@ -15,11 +15,26 @@
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.getProductCategories = getProductCategories;
         $scope.ChooseImage = ChooseImage;
+        $scope.ChooseMoreImage = ChooseMoreImage;
+
+        $scope.moreImages = [];
 
         function ChooseImage() {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
-                $scope.product.Image = fileUrl;
+                $scope.$apply(function () {
+                    $scope.product.Image = fileUrl;
+                })
+            }
+            finder.popup();
+        }
+
+        function ChooseMoreImage() {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $scope.$apply(function () {
+                    $scope.moreImages.push(fileUrl);
+                })
             }
             finder.popup();
         }
@@ -44,6 +59,7 @@
 
 
         function UpdateProduct() {
+            $scope.product.MoreImages = JSON.stringify($scope.moreImages);
             apiService.put('/api/product/update', $scope.product,
                 function (result) {
                     notificationService.displaySuccess(result.data.Name + ' Đã được cập nhật');
@@ -56,6 +72,8 @@
         function loadProductDetail() {
             apiService.get('/api/product/getbyid/' + $stateParams.id, null, function (result) {
                 $scope.product = result.data;
+                if (JSON.parse($scope.product.MoreImages) != null)
+                    $scope.moreImages = JSON.parse($scope.product.MoreImages);
             }, function (error) {
                 notificationService.displayError(error.data);
             });
