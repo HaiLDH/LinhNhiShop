@@ -15,7 +15,7 @@ using System.Web.Script.Serialization;
 namespace LinhNhiShop.Web.Api
 {
     [RoutePrefix(("api/productcategory"))]
-    //[Authorize]
+    [Authorize]
     public class ProductCategoryController : ApiBaseController
     {
         IProductCategoryService _productCategoryService;
@@ -88,7 +88,7 @@ namespace LinhNhiShop.Web.Api
 
         [HttpPost]
         [Route("create")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public HttpResponseMessage Create(HttpRequestMessage httpRequest, ProductCategoryViewModel productCategoryViewModel)
         {
             return CreateHttpResponse(httpRequest, () =>
@@ -120,7 +120,7 @@ namespace LinhNhiShop.Web.Api
 
         [HttpPut]
         [Route("update")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public HttpResponseMessage Update(HttpRequestMessage httpRequest, ProductCategoryViewModel productCategoryViewModel)
         {
             return CreateHttpResponse(httpRequest, () =>
@@ -152,7 +152,7 @@ namespace LinhNhiShop.Web.Api
 
         [HttpDelete]
         [Route("delete")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public HttpResponseMessage Delete(HttpRequestMessage httpRequest, int id)
         {
             return CreateHttpResponse(httpRequest, () =>
@@ -178,7 +178,7 @@ namespace LinhNhiShop.Web.Api
 
         [HttpDelete]
         [Route("deletemulti")]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public HttpResponseMessage DeleteMulti(HttpRequestMessage httpRequest, string checkedProductCategories)
         {
             return CreateHttpResponse(httpRequest, () =>
