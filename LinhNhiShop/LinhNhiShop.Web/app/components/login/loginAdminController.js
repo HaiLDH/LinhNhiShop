@@ -1,11 +1,23 @@
 ﻿(function (app) {
-    app.controller('loginAdminController', loginAdminController);
+    app.controller('loginAdminController', ['$scope', 'loginService', '$injector', 'notificationService',
+        function ($scope, loginService, $injector, notificationService) {
 
-    loginAdminController.$inject = ['$scope','$state']
+            $scope.loginData = {
+                userName: "",
+                password: ""
+            };
 
-    function loginAdminController($scope, $state) {
-        $scope.loginSubmit = function () {
-            $state.go('home');
-        }
-    }
+            $scope.loginSubmit = function () {
+                loginService.login($scope.loginData.userName, $scope.loginData.password)
+                    .then(function (response) {
+                    if (response != null && response.error != undefined) {
+                        notificationService.displayError("Đăng nhập không đúng.");
+                    }
+                    else {
+                        var stateService = $injector.get('$state');
+                        stateService.go('home');
+                    }
+                });
+            }
+        }]);
 })(angular.module('linhnhishop'));

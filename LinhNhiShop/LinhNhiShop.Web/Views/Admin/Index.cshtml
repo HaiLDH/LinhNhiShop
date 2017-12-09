@@ -17,6 +17,8 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link href="~/Assets/admin/css/skins/_all-skins.min.css" rel="stylesheet" />
+    <!--angular loading bar-->
+    <link href="~/Assets/admin/libs/angular-loading-bar/build/loading-bar.css" rel="stylesheet" />
 
 
     <!--Custom css-->
@@ -51,23 +53,30 @@
 
 
     <!-- Begin embed AngularJS-->
+    <!--Library-->
+    <!--Angular UI Router-->
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
-
     <!-- Toastr Notification-->
     <script src="~/Assets/admin/libs/toastr/toastr.js"></script>
-
     <!-- bootbox and ngBootbox-->
     <script src="~/Assets/admin/libs/bootbox/bootbox.js"></script>
     <script src="~/Assets/admin/libs/ngBootbox/ngBootbox.js"></script>
-
     <!-- ckeditor and ngckeditor ckfinder-->
     <script src="~/Assets/admin/libs/ckeditor/ckeditor.js"></script>
     <script src="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="~/Assets/admin/libs/ckfinder/ckfinder.js"></script>
+    <!--angular local storage & angular loading bar-->
+    <script src="~/Assets/admin/libs/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="~/Assets/admin/libs/angular-loading-bar/build/loading-bar.js"></script>
 
     <!-- Service-->
+    <!--Common-->
     <script src="~/app/shared/modules/linhnhishop.common.js"></script>
+    <!--Login Logout Admin-->
+    <script src="~/app/shared/services/authData.js"></script>
+    <script src="~/app/shared/services/authenticationService.js"></script>
+    <script src="~/app/shared/services/loginService.js"></script>
 
     <script src="~/app/shared/services/apiService.js"></script>
     <script src="~/app/shared/services/notificationService.js"></script>
@@ -75,7 +84,6 @@
 
     <!-- Paging-->
     <script src="~/app/shared/directives/pagerDirective.js"></script>
-
     <!-- Filter-->
     <script src="~/app/shared/filters/statusFilter.js"></script>
 

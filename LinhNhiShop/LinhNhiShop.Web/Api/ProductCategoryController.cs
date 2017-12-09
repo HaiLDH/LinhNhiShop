@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace LinhNhiShop.Web.Api
 {
     [RoutePrefix(("api/productcategory"))]
+    //[Authorize]
     public class ProductCategoryController : ApiBaseController
     {
         IProductCategoryService _productCategoryService;
@@ -103,6 +104,7 @@ namespace LinhNhiShop.Web.Api
                     var productCategory = new ProductCategory();
                     productCategory.UpdateProductCategory(productCategoryViewModel);
                     productCategory.CreateDate = DateTime.Now;
+                    productCategory.CreateBy = User.Identity.Name;
 
                     _productCategoryService.Add(productCategory);
                     _productCategoryService.Save();
@@ -134,6 +136,7 @@ namespace LinhNhiShop.Web.Api
                     var productCategory = _productCategoryService.GetById(productCategoryViewModel.ID);
                     productCategory.UpdateProductCategory(productCategoryViewModel);
                     productCategory.UpdateDate = DateTime.Now;
+                    productCategory.CreateBy = User.Identity.Name;
 
                     _productCategoryService.Update(productCategory);
                     _productCategoryService.Save();
