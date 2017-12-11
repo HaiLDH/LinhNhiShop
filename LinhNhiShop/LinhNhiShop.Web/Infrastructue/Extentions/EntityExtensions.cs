@@ -1,9 +1,5 @@
 ﻿using LinhNhiShop.Model.Models;
 using LinhNhiShop.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace LinhNhiShop.Web.Infrastructue.Extentions
 {
@@ -40,7 +36,7 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
             postCategory.MetaDescription = postCategoryViewModel.MetaDescription;
 
             postCategory.Status = postCategoryViewModel.Status;
-    }
+        }
 
         public static void UpdatePost(this Post post, PostViewModel postViewModel)
         {
@@ -78,5 +74,86 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
 
             post.Status = postViewModel.Status;
         }
+
+        public static void UpdateProductCategory(this ProductCategory productCategory, ProductCategoryViewModel productCategoryViewModel)
+        {
+            productCategory.ID = productCategoryViewModel.ID;
+
+            productCategory.Name = productCategoryViewModel.Name;
+
+            productCategory.Alias = productCategoryViewModel.Alias;
+
+            productCategory.Description = productCategoryViewModel.Description;
+
+            productCategory.ParentID = productCategoryViewModel.ParentID;
+
+            productCategory.DisplayOrder = productCategoryViewModel.DisplayOrder;
+
+            productCategory.Image = productCategoryViewModel.Image;
+
+            productCategory.HomeFlag = productCategoryViewModel.HomeFlag;
+
+            productCategory.CreateDate = productCategoryViewModel.CreateDate;
+
+            productCategory.CreateBy = productCategoryViewModel.CreateBy;
+
+            productCategory.UpdateDate = productCategoryViewModel.UpdateDate;
+
+            productCategory.UpdateBy = productCategoryViewModel.UpdateBy;
+
+            productCategory.MetaKeyword = productCategoryViewModel.MetaKeyword;
+
+            productCategory.MetaDescription = productCategoryViewModel.MetaDescription;
+
+            productCategory.Status = productCategoryViewModel.Status;
+        }
+
+        public static void UpdateProduct(this Product product, ProductViewModel productViewModel)
+        {
+            product.ID = productViewModel.ID;
+
+            product.Name = productViewModel.Name;
+
+            product.Alias = productViewModel.Alias;
+
+            product.CategoryID = productViewModel.CategoryID;
+
+            product.MoreImages = productViewModel.MoreImages;
+
+            product.Image = productViewModel.Image;
+
+            product.Price = productViewModel.Price;
+
+            product.PromotionPrice = productViewModel.PromotionPrice;
+
+            product.Warranty = productViewModel.Warranty;
+
+            product.Description = productViewModel.Description;
+
+            product.Content = productViewModel.Content;
+
+            product.HomeFlag = productViewModel.HomeFlag;
+
+            product.HotFlag = productViewModel.HotFlag;
+
+            product.ViewCount = productViewModel.ViewCount;
+
+
+            product.CreateDate = productViewModel.CreateDate;
+
+            product.CreateBy = productViewModel.CreateBy;
+
+            product.UpdateDate = productViewModel.UpdateDate;
+
+            product.UpdateBy = productViewModel.UpdateBy;
+
+            product.MetaKeyword = productViewModel.MetaKeyword;
+
+            product.MetaDescription = productViewModel.MetaDescription;
+
+            product.Status = productViewModel.Status;
+
+            product.Tags = productViewModel.Tags;
+    }
     }
 }

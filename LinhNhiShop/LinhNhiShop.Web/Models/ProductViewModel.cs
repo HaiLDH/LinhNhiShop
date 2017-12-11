@@ -35,11 +35,13 @@ namespace LinhNhiShop.Web.Models
 
         public int? ViewCount { get; set; }
 
+        public string Tags { get; set; }
+
         public virtual ProductCategoryViewModel ProductCategories { get; set; }
 
-        public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }
+        //public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }
 
-        public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
+        //public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
