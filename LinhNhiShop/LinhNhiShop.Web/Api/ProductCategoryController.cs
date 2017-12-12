@@ -95,6 +95,9 @@ namespace LinhNhiShop.Web.Api
             {
                 HttpResponseMessage httpResponse = null;
 
+                //User to check error ModelState
+                //var errors = ModelState.Where(x => x.Value.Errors.Count > 0).Select(x => new { x.Key, x.Value.Errors }).ToArray();
+
                 if (!ModelState.IsValid)
                 {
                     httpResponse = httpRequest.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);

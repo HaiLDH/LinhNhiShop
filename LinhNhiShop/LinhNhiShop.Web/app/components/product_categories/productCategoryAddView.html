@@ -32,14 +32,14 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Tiêu đề SEO</label>
                     <div class="col-sm-10">
                         <input type="text" name="alias" required class="form-control" ng-model="productCategory.Alias">
-                        <span ng-show="frmAddProductCatefory.alias.$invalid|| frmAddProductCatefory.alias.$error.maxlength" class="has-error">Yêu cầu nhập tiêu đề SEO</span>
+                        <span ng-show="frmAddProductCatefory.alias.$invalid || frmAddProductCatefory.alias.$error.maxlength" class="has-error">Yêu cầu nhập tiêu đề SEO</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
                     <div class="col-sm-10">
-                        <input type="text" name="description" class="form-control" ng-maxlength="500" ng-model="productCategory.Description">
-                        <span ng-show="frmAddProductCatefory.description.$error.maxlength" class="has-error">Mô tả tối đa 500 kí tự</span>
+                        <input type="text" name="description" class="form-control" required ng-maxlength="500" ng-model="productCategory.Description">
+                        <span ng-show="frmAddProductCatefory.description.$invalid || frmAddProductCatefory.description.$error.maxlength" class="has-error">Mô tả lớn hơn 0 và tối đa 500 kí tự</span>
                     </div>
                 </div>
                 <div class="form-group">
