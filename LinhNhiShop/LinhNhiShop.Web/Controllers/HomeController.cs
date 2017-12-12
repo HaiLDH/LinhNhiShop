@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using LinhNhiShop.Model.Models;
+using LinhNhiShop.Service;
+using LinhNhiShop.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +12,16 @@ namespace LinhNhiShop.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IProductCategoryService _productCategoryService;
+        ICommonService _commonService;
+        public HomeController(IProductCategoryService productCategoryService, ICommonService commonService)
+        {
+            this._productCategoryService = productCategoryService;
+            this._commonService = commonService;
+        }
+
+
+
         public ActionResult Index()
         {
             return View();
@@ -36,13 +50,17 @@ namespace LinhNhiShop.Web.Controllers
         [ChildActionOnly]
         public ActionResult Category()
         {
-            return PartialView();
+            var productCategory = _productCategoryService.GetAll();
+            var productCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(productCategory);
+            return PartialView(productCategoryViewModel);
         }
 
         [ChildActionOnly]
         public ActionResult Footer()
         {
-            return PartialView();
+            var footer = _commonService.GetFooter();
+            var footerViewModel = Mapper.Map<Footer, FooterViewModel>(footer);
+            return PartialView(footerViewModel);
         }
     }
 }

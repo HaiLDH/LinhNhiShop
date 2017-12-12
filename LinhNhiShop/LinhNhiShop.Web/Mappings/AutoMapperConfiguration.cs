@@ -19,6 +19,7 @@ namespace LinhNhiShop.Web.Mappings
                 cfg.CreateMap<ProductTag, ProductTagViewModel>();
                 cfg.CreateMap<Product, ProductViewModel>();
                 cfg.CreateMap<Tag, TagViewModel>();
+                cfg.CreateMap<Footer, FooterViewModel>();
             });
         }
     }
