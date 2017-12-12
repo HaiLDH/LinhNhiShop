@@ -19,8 +19,14 @@
         protected override void Seed(LinhNhiShopDbContext context)
         {
             ProductCategoryTest(context);
+            CreateSlides(context);
 
             //  This method will be called after migrating to the latest version.
+
+        }
+
+        private void CreateUser(LinhNhiShopDbContext context)
+        {
             //  Test login with Available Account in DB
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new LinhNhiShopDbContext()));
 
@@ -61,6 +67,40 @@
                 new ProductCategory(){Name="Album",Alias="album",Status=true}
             };
                 context.ProductCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreateSlides(LinhNhiShopDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                List<Slide> listSlide = new List<Slide>()
+                {
+                    new Slide(){
+                        Name ="Slide1",
+                        DisplayOrder =1,
+                        Status =true,
+                        URL ="#",
+                        Image ="/Assets/client/images/bag.jpg",
+                        Content=@"<h2>FLAT 50% 0FF</h2>
+                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>
+                                < span class=""on-get"">GET NOW</span>"
+                    },
+                    new Slide(){
+                        Name ="Slide2",
+                        DisplayOrder =2,
+                        Status =true,
+                        URL ="#",
+                        Image ="/Assets/client/images/bag1.jpg",
+                        Content=@"<h2>FLAT 50% 0FF</h2>
+                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </p>
+                                <span class=""on-get"">GET NOW</span>"
+                    }
+                };
+                context.Slides.AddRange(listSlide);
                 context.SaveChanges();
             }
         }

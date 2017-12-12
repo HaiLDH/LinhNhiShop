@@ -20,6 +20,8 @@ namespace LinhNhiShop.Model.Models
         [MaxLength(256)]
         public string Image { get; set; }
 
+        public string Content { get; set; }
+
         [MaxLength(256)]
         public string URL { get; set; }
 
