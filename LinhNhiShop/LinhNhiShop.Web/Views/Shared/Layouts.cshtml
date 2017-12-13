@@ -23,19 +23,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <body>
     <!--header-->
     @{ Html.RenderAction("Header", "Home");}
-    <!---->
+
+    <!--container-->
     <div class="container">
+        <!--shoes-grid-->
         @RenderBody()
-    </div>
-    </a>
-
-    <!---->
-    @RenderSection("homeProducts", required: false)
-    <div class="clearfix"> </div>
-    </div>
-
-    @{ Html.RenderAction("Category", "Home");}
-    <div class="clearfix"> </div>
+        <!--sub-cate-->
+        @{Html.RenderAction("Category", "Home");}
+        <!--clearfix-->
+        <div class="clearfix"> </div>
     </div>
 
     <!--Footer-->
