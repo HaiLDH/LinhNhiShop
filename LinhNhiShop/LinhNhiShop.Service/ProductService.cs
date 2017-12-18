@@ -24,6 +24,10 @@ namespace LinhNhiShop.Service
 
         IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<string> GetListProductsByName(string name);
+
         Product GetById(int id);
 
         void Save();
@@ -144,9 +148,41 @@ namespace LinhNhiShop.Service
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
+        public IEnumerable<string> GetListProductsByName(string name)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
+
+            switch (sort)
+            {
+                case "new":
+                    query = query.OrderByDescending(x => x.CreateDate);
+                    break;
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    break;
+            }
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public void Update(Product product)
