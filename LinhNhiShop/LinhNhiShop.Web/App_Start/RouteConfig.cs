@@ -10,11 +10,11 @@ namespace LinhNhiShop.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Login",
-                url: "dang-nhap.html",
-                defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
-                namespaces: new string[] { "LinhNhiShop.Web.Controllers" }
-            );
+               name: "Login",
+               url: "dang-nhap.html",
+               defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional },
+               namespaces: new string[] { "LinhNhiShop.Web.Controllers" }
+           );
 
             routes.MapRoute(
                 name: "About",
@@ -24,7 +24,7 @@ namespace LinhNhiShop.Web
             );
 
             routes.MapRoute(
-                name: "ProductCategory",
+                name: "Product Category",
                 url: "{alias}.pc-{id}.html",
                 defaults: new { controller = "Product", action = "Category", id = UrlParameter.Optional },
                 namespaces: new string[] { "LinhNhiShop.Web.Controllers" }
@@ -33,7 +33,7 @@ namespace LinhNhiShop.Web
             routes.MapRoute(
                 name: "Product",
                 url: "{alias}.p-{id}.html",
-                defaults: new { controller = "Product", action = "Detail", productId = UrlParameter.Optional },
+                defaults: new { controller = "Product", action = "Detail", id = UrlParameter.Optional },
                 namespaces: new string[] { "LinhNhiShop.Web.Controllers" }
             );
 

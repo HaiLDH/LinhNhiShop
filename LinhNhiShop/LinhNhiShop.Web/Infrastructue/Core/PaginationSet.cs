@@ -19,6 +19,8 @@ namespace LinhNhiShop.Web.Infrastructue.Core
 
         public int TotalCount { get; set; }
 
+        public int MaxPage { get; set; }
+
         public IEnumerable<T> Items { get; set; }
     }
 }
