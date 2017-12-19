@@ -13,8 +13,8 @@ namespace LinhNhiShop.Web.Models
 
         public string Type { get; set; }
 
-        public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }
+        //public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }
 
-        public virtual IEnumerable<PostTagViewModel> PostTags { get; set; }
+        //public virtual IEnumerable<PostTagViewModel> PostTags { get; set; }
     }
 }

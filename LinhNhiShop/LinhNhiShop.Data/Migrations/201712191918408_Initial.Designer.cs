@@ -13,7 +13,7 @@ namespace LinhNhiShop.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201712190750134_Initial"; }
+            get { return "201712191918408_Initial"; }
         }
         
         string IMigrationMetadata.Source

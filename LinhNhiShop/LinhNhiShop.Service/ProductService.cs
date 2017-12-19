@@ -33,6 +33,14 @@ namespace LinhNhiShop.Service
         Product GetById(int id);
 
         void Save();
+
+        IEnumerable<Tag> GetListTagByProductId(int id);
+
+        void IncreaseView(int id);
+
+        IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow);
+
+        Tag GetTag(string tagID);
     }
 
     public class ProductService : IProductService
@@ -150,9 +158,19 @@ namespace LinhNhiShop.Service
             return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
+        public IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow)
+        {
+            return _productRepository.GetListProductByTag(tagId, page, pageSize, out totalRow);
+        }
+
         public IEnumerable<string> GetListProductsByName(string name)
         {
             return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Tag> GetListTagByProductId(int id)
+        {
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
         }
 
         public IEnumerable<Product> GetRelatedProducts(int id, int top)
@@ -160,6 +178,20 @@ namespace LinhNhiShop.Service
             var product = _productRepository.GetSingleById(id);
 
             return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreateDate).Take(top);
+        }
+
+        public Tag GetTag(string tagID)
+        {
+            return _tagRepository.GetSingleByCondition(x => x.ID == tagID);
+        }
+
+        public void IncreaseView(int id)
+        {
+            var product = _productRepository.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+                product.ViewCount += 1;
+            else
+                product.ViewCount = 1;
         }
 
         public void Save()

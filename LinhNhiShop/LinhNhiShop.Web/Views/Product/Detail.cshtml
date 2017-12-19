@@ -86,6 +86,17 @@
             </div>
             <h6>@Model.Quantity sản phẩm trong kho</h6>
             <p>@Model.Description</p>
+            <div class="tag">
+                <h5>Tag :</h5>
+                <ul class="taglist">
+                    @foreach (var tag in (IEnumerable<LinhNhiShop.Web.Models.TagViewModel>)ViewBag.Tags)
+                    {
+                        <li><a href="/tag/@(tag.ID).html">@(tag.Name),&nbsp</a></li>
+                    }
+
+                </ul>
+            </div>
+            <div class="clearfix"></div>
             <div class="share">
                 <h5>Chia sẻ :</h5>
                 <ul class="share_nav">
@@ -105,7 +116,7 @@
     }
     <ul id="flexiselDemo1">
         @foreach (var product in relatedProducts)
-        {
+            {
             <li><img src="@product.Image" /><div class="grid-flex"><a href="@(product.Alias).p-@(product.ID).html">@product.Name</a><p>@product.Price.ToString("N0")</p></div></li>
         }
 
