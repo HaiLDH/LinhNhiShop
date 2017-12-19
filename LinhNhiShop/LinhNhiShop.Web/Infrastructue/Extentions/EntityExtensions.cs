@@ -154,6 +154,8 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
             product.Status = productViewModel.Status;
 
             product.Tags = productViewModel.Tags;
-    }
+
+            product.Quantity = productViewModel.Quantity;
+        }
     }
 }

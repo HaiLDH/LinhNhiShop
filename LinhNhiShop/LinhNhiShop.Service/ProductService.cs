@@ -22,6 +22,8 @@ namespace LinhNhiShop.Service
 
         IEnumerable<Product> GetHotProduct(int top);
 
+        IEnumerable<Product> GetRelatedProducts(int id, int top);
+
         IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
         IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
@@ -151,6 +153,13 @@ namespace LinhNhiShop.Service
         public IEnumerable<string> GetListProductsByName(string name)
         {
             return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> GetRelatedProducts(int id, int top)
+        {
+            var product = _productRepository.GetSingleById(id);
+
+            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreateDate).Take(top);
         }
 
         public void Save()

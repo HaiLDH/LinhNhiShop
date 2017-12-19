@@ -37,6 +37,8 @@ namespace LinhNhiShop.Web.Models
 
         public string Tags { get; set; }
 
+        public int Quantity { get; set; }
+
         public virtual ProductCategoryViewModel ProductCategories { get; set; }
 
         //public virtual IEnumerable<ProductTagViewModel> ProductTags { get; set; }

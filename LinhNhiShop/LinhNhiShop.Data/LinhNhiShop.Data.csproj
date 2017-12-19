@@ -61,33 +61,9 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="LinhNhiShopDbContext.cs" />
-    <Compile Include="Migrations\201711261645170_InitialDB.cs" />
-    <Compile Include="Migrations\201711261645170_InitialDB.Designer.cs">
-      <DependentUpon>201711261645170_InitialDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711270840100_InitialDB1.cs" />
-    <Compile Include="Migrations\201711270840100_InitialDB1.Designer.cs">
-      <DependentUpon>201711270840100_InitialDB1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711280922155_AddErrorTable.cs" />
-    <Compile Include="Migrations\201711280922155_AddErrorTable.Designer.cs">
-      <DependentUpon>201711280922155_AddErrorTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711300642284_Intergrated-ASPNetIdentity.cs" />
-    <Compile Include="Migrations\201711300642284_Intergrated-ASPNetIdentity.Designer.cs">
-      <DependentUpon>201711300642284_Intergrated-ASPNetIdentity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711300755363_ChangeKey.cs" />
-    <Compile Include="Migrations\201711300755363_ChangeKey.Designer.cs">
-      <DependentUpon>201711300755363_ChangeKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712070521550_AddTagField.cs" />
-    <Compile Include="Migrations\201712070521550_AddTagField.Designer.cs">
-      <DependentUpon>201712070521550_AddTagField.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712120749287_AddContentToSlide.cs" />
-    <Compile Include="Migrations\201712120749287_AddContentToSlide.Designer.cs">
-      <DependentUpon>201712120749287_AddContentToSlide.cs</DependentUpon>
+    <Compile Include="Migrations\201712190750134_Initial.cs" />
+    <Compile Include="Migrations\201712190750134_Initial.Designer.cs">
+      <DependentUpon>201712190750134_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,26 +101,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711261645170_InitialDB.resx">
-      <DependentUpon>201711261645170_InitialDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711270840100_InitialDB1.resx">
-      <DependentUpon>201711270840100_InitialDB1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711280922155_AddErrorTable.resx">
-      <DependentUpon>201711280922155_AddErrorTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711300642284_Intergrated-ASPNetIdentity.resx">
-      <DependentUpon>201711300642284_Intergrated-ASPNetIdentity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711300755363_ChangeKey.resx">
-      <DependentUpon>201711300755363_ChangeKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712070521550_AddTagField.resx">
-      <DependentUpon>201712070521550_AddTagField.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712120749287_AddContentToSlide.resx">
-      <DependentUpon>201712120749287_AddContentToSlide.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201712190750134_Initial.resx">
+      <DependentUpon>201712190750134_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
