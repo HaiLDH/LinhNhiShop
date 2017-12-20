@@ -17,6 +17,7 @@
         protected override void Seed(LinhNhiShopDbContext context)
         {
             ProductCategoryTest(context);
+            CrearePage(context);
 
             //  This method will be called after migrating to the latest version.
             //  Test login with Available Account in DB
@@ -59,6 +60,31 @@
                 new ProductCategory(){Name="Album",Alias="album",Status=true}
             };
                 context.ProductCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
+        }
+
+        private void CrearePage(LinhNhiShopDbContext context)
+        {
+            if (context.Pages.Count() == 0)
+            {
+                var page = new Page()
+                {
+                    Name = "Giới Thiệu",
+                    Alias = "gioi-thieu",
+                    Content = @"Where can I get some?
+                                There are many variations of passages of Lorem Ipsum available,
+                                but the majority have suffered alteration in some form,
+                                by injected humour,
+                                or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary,
+                                making this the first true generator on the Internet.It uses a dictionary of over 200 Latin words,
+                                combined with a handful of model sentence structures,
+                                to generate Lorem Ipsum which looks reasonable.The generated Lorem Ipsum is therefore always free from repetition,
+                                injected humour,
+                                or non - characteristic words etc.",
+                    Status = true
+                };
+                context.Pages.Add(page);
                 context.SaveChanges();
             }
         }
