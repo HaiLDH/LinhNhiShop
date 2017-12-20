@@ -25,7 +25,7 @@ namespace LinhNhiShop.Web.Controllers
         }
 
 
-
+        [OutputCache(Duration = 60, Location = System.Web.UI.OutputCacheLocation.Server)]
         public ActionResult Index()
         {
             var slideModel = _commonService.GetSlide();
@@ -45,20 +45,6 @@ namespace LinhNhiShop.Web.Controllers
             return View(homeViewModel);
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-
         [ChildActionOnly]
         public ActionResult Header()
         {
@@ -66,6 +52,7 @@ namespace LinhNhiShop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 1800)]
         public ActionResult Category()
         {
             var productCategory = _productCategoryService.GetAll();
@@ -74,6 +61,7 @@ namespace LinhNhiShop.Web.Controllers
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = 1800)]
         public ActionResult Footer()
         {
             var footer = _commonService.GetFooter();
