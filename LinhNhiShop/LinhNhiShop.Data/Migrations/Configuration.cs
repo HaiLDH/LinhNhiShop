@@ -18,6 +18,7 @@
         {
             ProductCategoryTest(context);
             CrearePage(context);
+            CreareContactDetail(context);
 
             //  This method will be called after migrating to the latest version.
             //  Test login with Available Account in DB
@@ -85,6 +86,26 @@
                     Status = true
                 };
                 context.Pages.Add(page);
+                context.SaveChanges();
+            }
+        }
+
+        private void CreareContactDetail(LinhNhiShopDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                var contactDetail = new ContactDetail()
+                {
+                    Name = "Linh Nhi Shop",
+                    Adress = "Làng Bún Phú Đô, Mỹ Đình, Hà Nội",
+                    Email  = "linhmieu190996@gmail.com",
+                    Lat = 21.011004,
+                    Lng = 105.7646947,
+                    Phone = "01669466422",
+                    Website = "https://www.facebook.com/MyNhanCoTrangHoaNgu",
+                    Status = true
+                };
+                context.ContactDetails.Add(contactDetail);
                 context.SaveChanges();
             }
         }

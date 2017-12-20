@@ -65,8 +65,13 @@
     <Compile Include="Migrations\201712191918408_Initial.Designer.cs">
       <DependentUpon>201712191918408_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712201042180_AddContactDetail.cs" />
+    <Compile Include="Migrations\201712201042180_AddContactDetail.Designer.cs">
+      <DependentUpon>201712201042180_AddContactDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
@@ -103,6 +108,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712191918408_Initial.resx">
       <DependentUpon>201712191918408_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712201042180_AddContactDetail.resx">
+      <DependentUpon>201712201042180_AddContactDetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

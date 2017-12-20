@@ -40,6 +40,8 @@ namespace LinhNhiShop.Data
 
         public DbSet<Error> Errors { get; set; }
 
+        public DbSet<ContactDetail> ContactDetails { get; set; }
+
         public static LinhNhiShopDbContext Create()
         {
             return new LinhNhiShopDbContext();
