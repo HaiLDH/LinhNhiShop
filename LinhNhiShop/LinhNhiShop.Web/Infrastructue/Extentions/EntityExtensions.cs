@@ -1,5 +1,6 @@
 ﻿using LinhNhiShop.Model.Models;
 using LinhNhiShop.Web.Models;
+using System;
 
 namespace LinhNhiShop.Web.Infrastructue.Extentions
 {
@@ -156,6 +157,21 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
             product.Tags = productViewModel.Tags;
 
             product.Quantity = productViewModel.Quantity;
+        }
+
+        public static void UpdateFeedback(this Feedback feedback, FeedbackViewModel feedbackViewModel)
+        {
+            feedback.ID = feedbackViewModel.ID;
+
+            feedback.Name = feedbackViewModel.Name;
+
+            feedback.Email = feedbackViewModel.Email;
+
+            feedback.Message = feedbackViewModel.Message;
+
+            feedback.CreatedDate = DateTime.Now;
+
+            feedback.Status = feedbackViewModel.Status;
         }
     }
 }

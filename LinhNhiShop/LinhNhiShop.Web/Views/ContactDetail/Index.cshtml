@@ -1,4 +1,5 @@
-﻿@model LinhNhiShop.Web.Models.ContactDetailViewModel
+﻿@model LinhNhiShop.Web.Models.FeedbackViewModel
+@using BotDetect.Web.Mvc;
 
 @{
     ViewBag.Title = "Liên hệ";
@@ -6,7 +7,7 @@
 }
 
 
-<input type="hidden" id="hidContactDetail" value="@Model.Adress" />
+<input type="hidden" id="hidContactDetail" value="@Model.ContactDetailViewModel.Adress" />
 @section footerJS{
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZWH3sqMrPM-2QlGIKV5AM4YrCSoGG9Jg"></script>
     <script src="~/Assets/client/js/controllers/contactDetail.js"></script>
@@ -17,11 +18,12 @@
     }
 </style>
 
+<link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
 
-<input type="hidden" id="hidAddress" value="@Model.Name<br />Điện thoại: @Model.Phone <br />Địa chỉ: @Model.Adress" />
-<input type="hidden" id="hidName" value="@Model.Name" />
-<input type="hidden" id="hidLat" value="@Model.Lat" />
-<input type="hidden" id="hidLng" value="@Model.Lng" />
+<input type="hidden" id="hidAddress" value="@Model.ContactDetailViewModel.Name<br />Điện thoại: @Model.ContactDetailViewModel.Phone <br />Địa chỉ: @Model.ContactDetailViewModel.Adress" />
+<input type="hidden" id="hidName" value="@Model.ContactDetailViewModel.Name" />
+<input type="hidden" id="hidLat" value="@Model.ContactDetailViewModel.Lat" />
+<input type="hidden" id="hidLng" value="@Model.ContactDetailViewModel.Lng" />
 
 <div class="main">
     <div class="reservation_top">
@@ -29,11 +31,11 @@
             <h3>Thông tin liên hệ</h3>
             <div class="contact-form">
                 <address class="address">
-                    <p>@Model.Adress</p>
+                    <p>@Model.ContactDetailViewModel.Adress</p>
                     <dl>
                         <dt> </dt>
-                        <dd>Điện thoại:<span> @Model.Phone</span></dd>
-                        <dd>E-mail:&nbsp; <a href="mailto:@(Model.Email)">@Model.Email</a></dd>
+                        <dd>Điện thoại:<span> @Model.ContactDetailViewModel.Phone</span></dd>
+                        <dd>E-mail:&nbsp; <a href="mailto:@(Model.ContactDetailViewModel.Email)">@Model.ContactDetailViewModel.Email</a></dd>
                     </dl>
                 </address>
                 <div class="clearfix"></div>
@@ -43,15 +45,31 @@
     </div>
     <div class="reservation_top">
         <div class="contact_right">
-            <h3>Contact Form</h3>
+            <h3>Gửi thông tin liên hệ</h3>
             <div class="contact-form">
-                <form method="post" action="contact-post.html">
-                    <input type="text" class="textbox" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}">
-                    <input type="text" class="textbox" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-                    <textarea value="Message" onfocus="this.value= '';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
-                    <input type="submit" value="Send">
+                @using (Html.BeginForm("SendFeedback", "ContactDetail", FormMethod.Post))
+                {
+                    if (ViewData["SuccessMsg"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            <strong>Bạn đã gửi phản hồi thành công.</strong>
+                            <br />Chúng tôi sẽ liên hệ lại sớm nhất có thể.
+                            <br />Xin cảm ơn!
+                        </div>
+                    }
+
+                    @Html.ValidationSummary(false, "", new { @class = "error" });
+
+                    @Html.TextBoxFor(model => model.Name, new { @class = "textbox", @placeholder = "Tên" });
+                    @Html.TextBoxFor(model => model.Email, new { @class = "textbox", @placeholder = "Email" });
+                    @Html.TextAreaFor(model => model.Message, new { @placeholder = "Để lại lời nhắn..." });
+
+                    MvcCaptcha contactDetailCaptcha = new MvcCaptcha("ContactDetailCaptcha");
+                    @Html.Captcha(contactDetailCaptcha);
+                    @Html.TextBox("CaptchaCode");
+                    <input type="submit" value="Gửi">
                     <div class="clearfix"> </div>
-                </form>
+                }
             </div>
         </div>
     </div>

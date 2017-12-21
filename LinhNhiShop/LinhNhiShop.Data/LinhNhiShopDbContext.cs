@@ -42,6 +42,8 @@ namespace LinhNhiShop.Data
 
         public DbSet<ContactDetail> ContactDetails { get; set; }
 
+        public DbSet<Feedback> Feedbacks { get; set; }
+
         public static LinhNhiShopDbContext Create()
         {
             return new LinhNhiShopDbContext();
