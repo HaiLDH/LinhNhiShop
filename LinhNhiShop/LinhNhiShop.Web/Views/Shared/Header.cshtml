@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNet.Identity
 <div class="header">
     <div class="top-header">
         <div class="container">
@@ -59,11 +59,26 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-                <div class="account"><a href="login.html"><span> </span>Tài Khoản Của Bạn</a></div>
-                <ul class="login">
-                    <li><a href="/dang-nhap.html"><span> </span>Đăng Nhập</a></li> |
-                    <li><a href="/dang-ky.html">Đăng Ký</a></li>
-                </ul>
+                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post,new { @id="frmLogOutSubmit"}))
+                {
+                    if (Request.IsAuthenticated)
+                    {
+                        @Html.AntiForgeryToken()
+                        <ul class="login">
+                            <li><a href="/tai-khoan.html"><span> </span>Xin chào: @User.Identity.Name</a></li> |
+                            <li><a href="#" id="logOutSubmit">Thoát</a></li>
+                        </ul>
+
+                    }
+                    else
+                    {
+                        <ul class="login">
+                            <li><a href="/dang-nhap.html"><span> </span>Đăng Nhập</a></li> |
+                            <li><a href="/dang-ky.html">Đăng Ký</a></li>
+                        </ul>
+                    }
+                }
+
                 <div class="cart"><a href="/gio-hang.html"><span> </span>Giỏ Hàng</a></div>
                 <div class="clearfix"> </div>
             </div>

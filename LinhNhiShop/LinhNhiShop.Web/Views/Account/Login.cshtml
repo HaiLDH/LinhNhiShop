@@ -1,0 +1,42 @@
+﻿@model LinhNhiShop.Web.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="account_grid">
+    <div class="login-right">
+        <h3>Đăng nhập</h3>
+        <p>Nếu bạn đã có tài khoản, xin mời đăng nhập.</p>
+        @using (Html.BeginForm("Login", "Account", new { returnUrl = @ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            <div>
+                <span>Tài khoản<label>*</label></span>
+                @Html.TextBoxFor(model => model.UserName)
+            </div>
+            <div>
+                <span>Mật khẩu<label>*</label></span>
+                @Html.PasswordFor(model => model.Password)
+            </div>
+            <div>
+                @Html.CheckBoxFor(model => model.RememberMe)
+                Nhớ mật khẩu?
+            </div>
+            <div>
+                <input type="submit" value="Đăng nhập">
+            </div>
+            <div>
+                <a class="forgot" href="#">Quên mật khẩu?</a>
+            </div>
+
+        }
+    </div>
+    <div class=" login-left">
+        <h3>Khách hàng mới</h3>
+        <p>Đăng ký tài khoản với cửa hàng chúng tôi.</p>
+        <a class="acount-btn" href="/dang-ky.html">Tạo tài khoản</a>
+    </div>
+    <div class="clearfix"> </div>
+</div>
+

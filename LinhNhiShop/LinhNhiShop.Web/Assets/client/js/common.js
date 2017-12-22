@@ -29,7 +29,12 @@
             return $("<li>")
                 .append("<div>" + item.label + "<br>" + "</div>")
                 .appendTo(ul);
-        };
+            };
+
+        $('#logOutSubmit').off('click').on('click', function (e) {
+            e.preventDefault();
+            $('#frmLogOutSubmit').submit();
+        });
     }
 }
 common.init();
