@@ -2212,6 +2212,7 @@ input[type="date"] {
     }
 
 .input-sm {
+    width: 80px;
     height: 30px;
     padding: 5px 10px;
     font-size: 12px;

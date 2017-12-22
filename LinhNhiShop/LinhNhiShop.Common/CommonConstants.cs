@@ -13,5 +13,7 @@ namespace LinhNhiShop.Common
         public const string PostTag = "post";
 
         public const string DefauktFooterID = "default";
+
+        public const string SessionCart = "SessionCart";
     }
 }
