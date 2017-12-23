@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,16 +10,22 @@ namespace LinhNhiShop.Web.Models
     {
         public int ID { get; set; }
 
+        [MaxLength(256)]
         public string CustomerName { get; set; }
 
+        [MaxLength(256)]
         public string CustomerAddress { get; set; }
 
+        [MaxLength(256)]
         public string CustomerEmail { get; set; }
 
+        [MaxLength(50)]
         public string CustomerMobile { get; set; }
 
+        [MaxLength(256)]
         public string CustomerMessage { get; set; }
 
+        [MaxLength(256)]
         public string Paymentmethod { get; set; }
 
         public DateTime? CreateDate { get; set; }
@@ -29,6 +36,7 @@ namespace LinhNhiShop.Web.Models
 
         public bool Status { get; set; }
 
-        public virtual IEnumerable<OrderDetailViewModel> OrderDetails { get; set; }
+        [MaxLength(128)]
+        public string CustomerId { get; set; }
     }
 }

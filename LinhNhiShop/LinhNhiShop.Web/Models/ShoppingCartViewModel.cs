@@ -13,7 +13,5 @@ namespace LinhNhiShop.Web.Models
         public ProductViewModel Product { get; set; }
 
         public int Quantity { get; set; }
-
-        public string Name { get; set; }
     }
 }

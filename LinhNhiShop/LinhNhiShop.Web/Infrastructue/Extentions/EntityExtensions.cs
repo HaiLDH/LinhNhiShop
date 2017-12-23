@@ -173,5 +173,32 @@ namespace LinhNhiShop.Web.Infrastructue.Extentions
 
             feedback.Status = feedbackViewModel.Status;
         }
+
+        public static void UpdateOrder(this Order order, OrderViewModel orderViewModel)
+        {
+            order.ID = orderViewModel.ID;
+
+            order.CustomerName = orderViewModel.CustomerName;
+
+            order.CustomerId = orderViewModel.CustomerId;
+
+            order.CustomerEmail = orderViewModel.CustomerEmail;
+
+            order.CustomerAddress = orderViewModel.CustomerAddress;
+
+            order.CustomerMobile = orderViewModel.CustomerMobile;
+
+            order.CustomerMessage = orderViewModel.CustomerMessage;
+
+            order.CreateBy = orderViewModel.CreateBy;
+
+            order.CreateDate = DateTime.Now;
+
+            order.Paymentmethod = orderViewModel.Paymentmethod;
+
+            order.PaymentStatus = orderViewModel.PaymentStatus;
+
+            order.Status = orderViewModel.Status;
+        }
     }
 }

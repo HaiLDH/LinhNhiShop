@@ -2,7 +2,10 @@
 using LinhNhiShop.Common;
 using LinhNhiShop.Model.Models;
 using LinhNhiShop.Service;
+using LinhNhiShop.Web.App_Start;
+using LinhNhiShop.Web.Infrastructue.Extentions;
 using LinhNhiShop.Web.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +18,16 @@ namespace LinhNhiShop.Web.Controllers
     public class ShoppingCartController : Controller
     {
         IProductService _productService;
+        IOrderService _orderService;
+        ApplicationUserManager _applicationUserManager;
 
-        public ShoppingCartController(IProductService productService)
+        public ShoppingCartController(IProductService productService,
+            ApplicationUserManager applicationUserManager,
+            IOrderService orderService)
         {
             _productService = productService;
+            _orderService = orderService;
+            _applicationUserManager = applicationUserManager;
         }
 
         // GET: ShoppingCart
@@ -133,6 +142,71 @@ namespace LinhNhiShop.Web.Controllers
             return Json(new
             {
                 status = false
+            });
+        }
+
+
+
+
+        public ActionResult Checkout()
+        {
+            if (Session[CommonConstants.SessionCart] == null)
+            {
+
+            }
+
+            return View();
+        }
+
+        public JsonResult GetUser()
+        {
+            if (Request.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = _applicationUserManager.FindById(userId);
+
+                return Json(new
+                {
+                    data = user,
+                    status = true
+                });
+            }
+            return Json(new
+            {
+                status = false
+            });
+        }
+
+        public JsonResult CreateOrder(string orderViewModel)
+        {
+            var orderVm = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
+
+            var orderNew = new Order();
+            orderNew.UpdateOrder(orderVm);
+
+            if (Request.IsAuthenticated)
+            {
+                orderNew.CustomerId = User.Identity.GetUserId();
+                orderNew.CreateBy = User.Identity.GetUserName();
+            }
+
+            var cart = (List<ShoppingCartViewModel>)Session[CommonConstants.SessionCart];
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            foreach (var item in cart)
+            {
+                var detail = new OrderDetail
+                {
+                    ProductID = item.ProductId,
+                    Quantity = item.Quantity
+                };
+                orderDetails.Add(detail);
+            }
+
+            _orderService.Create(orderNew, orderDetails);
+
+            return Json(new
+            {
+                status = true
             });
         }
 
