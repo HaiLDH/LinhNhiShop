@@ -1,3 +1,7 @@
 ﻿(function () {
-    angular.module('linhnhishop.common', ['ui.router', 'ngBootbox','ngCkeditor'])
+    angular.module('linhnhishop.common',
+        ['ui.router',
+            'ngBootbox',
+            'ngCkeditor',
+            'checklist-model'])
 })();

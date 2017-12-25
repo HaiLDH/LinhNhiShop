@@ -16,7 +16,7 @@ namespace LinhNhiShop.Model.Models
         [MaxLength(256)]
         public string Address { get; set; }
 
-        public DateTime? Birthday { get; set; }
+        public DateTime? BirthDay { get; set; }
 
         public bool? Sex { get; set; }
 

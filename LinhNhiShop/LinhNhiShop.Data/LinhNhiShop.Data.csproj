@@ -77,8 +77,24 @@
     <Compile Include="Migrations\201712230820288_AddCustomerId.Designer.cs">
       <DependentUpon>201712230820288_AddCustomerId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712250450289_RenameIdentityTable.cs" />
+    <Compile Include="Migrations\201712250450289_RenameIdentityTable.Designer.cs">
+      <DependentUpon>201712250450289_RenameIdentityTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712250520463_AddUserGroup.cs" />
+    <Compile Include="Migrations\201712250520463_AddUserGroup.Designer.cs">
+      <DependentUpon>201712250520463_AddUserGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712250848438_EditApplicationUserBirthDay.cs" />
+    <Compile Include="Migrations\201712250848438_EditApplicationUserBirthDay.Designer.cs">
+      <DependentUpon>201712250848438_EditApplicationUserBirthDay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
@@ -126,6 +142,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712230820288_AddCustomerId.resx">
       <DependentUpon>201712230820288_AddCustomerId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712250450289_RenameIdentityTable.resx">
+      <DependentUpon>201712250450289_RenameIdentityTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712250520463_AddUserGroup.resx">
+      <DependentUpon>201712250520463_AddUserGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712250848438_EditApplicationUserBirthDay.resx">
+      <DependentUpon>201712250848438_EditApplicationUserBirthDay.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

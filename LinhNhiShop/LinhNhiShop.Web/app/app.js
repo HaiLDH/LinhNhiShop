@@ -2,6 +2,9 @@
     angular.module('linhnhishop',
         ['linhnhishop.products',
             'linhnhishop.product_categories',
+            'linhnhishop.application_groups',
+            'linhnhishop.application_roles',
+            'linhnhishop.application_users',
             'linhnhishop.common'])
         .config(config)
         .config(configAuthentication);

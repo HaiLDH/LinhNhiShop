@@ -127,7 +127,7 @@ namespace LinhNhiShop.Web.Controllers
                     UserName = registerViewModel.UserName,
                     Email = registerViewModel.Email,
                     EmailConfirmed = true,
-                    Birthday = DateTime.Now,
+                    BirthDay = DateTime.Now,
                     FullName = registerViewModel.FullName,
                     PhoneNumber = registerViewModel.PhoneNumber,
                     Address = registerViewModel.Address

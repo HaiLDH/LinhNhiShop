@@ -44,6 +44,12 @@ namespace LinhNhiShop.Data
 
         public DbSet<Feedback> Feedbacks { get; set; }
 
+
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { get; set; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
+        public DbSet<ApplicationGroup> ApplicationGroups { get; set; }
+
         public static LinhNhiShopDbContext Create()
         {
             return new LinhNhiShopDbContext();
@@ -52,9 +58,11 @@ namespace LinhNhiShop.Data
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             //2 primary key
-            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
             //1 primary key
-            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            builder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
+            builder.Entity<IdentityRole>().ToTable("ApplicationRoles");
         }
     }
 }
