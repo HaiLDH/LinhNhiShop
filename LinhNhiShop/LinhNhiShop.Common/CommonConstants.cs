@@ -15,5 +15,7 @@ namespace LinhNhiShop.Common
         public const string DefauktFooterID = "default";
 
         public const string SessionCart = "SessionCart";
+
+        public const string XsrfKey = "XsrfId";
     }
 }

@@ -9,7 +9,7 @@
     <div class="login-right">
         <h3>Đăng nhập</h3>
         <p>Nếu bạn đã có tài khoản, xin mời đăng nhập.</p>
-        @using (Html.BeginForm("Login", "Account", new { returnUrl = @ViewBag.ReturnUrl }, FormMethod.Post))
+        @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
         {
             <div>
                 <span>Tài khoản<label>*</label></span>
@@ -29,8 +29,8 @@
             <div>
                 <a class="forgot" href="#">Quên mật khẩu?</a>
             </div>
-
         }
+        @Html.Partial("_ExternalLoginsListPartial", new LinhNhiShop.Web.Models.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
     </div>
     <div class=" login-left">
         <h3>Khách hàng mới</h3>

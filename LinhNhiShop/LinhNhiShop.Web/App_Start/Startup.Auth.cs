@@ -10,6 +10,7 @@ using LinhNhiShop.Model.Models;
 using Microsoft.Owin.Security.OAuth;
 using System.Security.Claims;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security.Google;
 
 [assembly: OwinStartup(typeof(LinhNhiShop.Web.App_Start.Startup))]
 
@@ -46,7 +47,7 @@ namespace LinhNhiShop.Web.App_Start
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
@@ -60,17 +61,17 @@ namespace LinhNhiShop.Web.App_Start
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+                 appId: "2002659210005241",
+                 appSecret: "1408ce0a8e1c1a86f0c5b788def7747e");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "1021535574093-misltec99tpui2s082tig5s81o9a0c6m.apps.googleusercontent.com",
+                ClientSecret = "B0crYihLBTlyXA-JQInWzJ8E"
+            });
         }
-       
+
 
         private static UserManager<ApplicationUser> CreateManager(IdentityFactoryOptions<UserManager<ApplicationUser>> options, IOwinContext context)
         {
